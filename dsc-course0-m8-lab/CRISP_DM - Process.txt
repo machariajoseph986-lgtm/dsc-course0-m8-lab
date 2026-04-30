@@ -1,0 +1,168 @@
+                                        CRISP - DM PROCESS                  
+1. Business Understanding - What problem are we trying to solve?
+        Key Tasks:
+            i) Business Objectives
+The primary objective of this project is to analyze aviation accident data 
+to identify patterns in accident occurrence, injury severity, and contributing factors. 
+The goal is to generate insights that can help improve aviation safety 
+by highlighting high-risk conditions, locations, and aircraft characteristics.
+            ii) Assess the Situation
+The dataset contains historical aviation accident records with variables such as:
+    -Event date
+    -Location (state, city)
+    -Aircraft make/model
+    -Injury counts (fatal, serious, minor)
+However, the dataset presents several challenges:
+    -Missing values in key columns (e.g., injury counts, location)
+    -Inconsistent formatting (text fields, dates)
+    -Lack of standardized geographic identifiers
+To address location inconsistencies, a secondary dataset (US state codes)
+ is available for integration and standardization.
+            iii)  Determine Data Mining Goals
+The analysis aims to:
+    -Identify trends in aviation accidents over time
+    -Analyze the relationship between accident factors and injury severity
+    -Determine geographic patterns in accident occurrence (by state)
+    -Identify aircraft types or conditions associated with higher risk
+These goals will be achieved through data cleaning, transformation, 
+and exploratory data analysis (EDA).
+            iv) Produce Project Plan
+a]Data Understanding
+    -Load and inspect both datasets
+    -Explore structure, missing values, and distributions
+b]Data Preparation
+    -Clean aviation dataset (handle missing values, fix data types)
+    -Clean US state codes dataset
+    -Merge datasets for geographic analysis
+    -Create new features (e.g., total injuries, year)
+c]Data Analysis (Modeling)
+    -Perform exploratory data analysis
+    -Generate visualizations and summaries
+d]Evaluation
+    -Interpret findings in relation to objectives
+e]Reporting
+    -Present insights and conclusions
+
+
+2. Data Understanding - What data do we have? What does it look like?
+    a] Collect Initial Data
+The analysis uses two datasets: an aviation accident dataset
+ containing records of aviation incidents and a US state codes dataset
+ used to standardize geographic information. Both datasets were loaded 
+ into Pandas DataFrames for inspection and analysis.
+    b] Describe Data
+The aviation dataset contains multiple columns including
+ event date, location, aircraft details, and injury severity.
+  The dataset includes both numerical and categorical variables.
+  The state codes dataset contains mappings between state abbreviations
+  and full state names.
+    c] Explore Data
+Initial exploration shows variation in injury severity levels and aircraft manufacturers.
+ Some categories appear more frequently, indicating potential patterns worth further analysis.
+    d] Verify Data Quality
+Data quality checks revealed the presence of missing values in several columns,
+ particularly in injury-related fields. Some columns have inconsistent data types,
+ such as dates stored as strings. Duplicate records were also checked to ensure data integrity. 
+ These issues will be addressed during the data preparation phase.
+
+
+3. Data Preparation - How can we clean and prepare the data for analysis?
+    a] Select Data = What data is relevant for your analysis?
+From the aviation dataset, keep only useful columns such as:
+['Event.Date', 'Location', 'Country', 'Make', 'Model',
+    'Injury.Severity', 'Total.Fatal.Injuries',
+    'Total.Serious.Injuries', 'Total.Minor.Injuries',
+    'Weather.Condition']
+Why?
+-Removes noise
+-Focuses analysis on injuries, time, and location
+    b] Clean Data = Fix errors, missing values, inconsistencies
+-Correct data types (e.g.,'Event.Date', 'Total.Fatal.Injuries',
+ 'Total.Serious.Injuries', 'Total.Minor.Injuries')
+-Handle missing values (e.g., 'Event.Date', 'Location')
+-Standardize location data using the US state codes dataset
+-Remove duplicates
+-Clean text
+    c] Construct Data = Create new useful columns
+Extract year, Total Injuries, Extract state from location,
+ integrate data, format data, final checks
+
+
+4. Modeling - What techniques can we use to analyze the data?
+    a) Select Modeling Technique
+Since this project focuses on exploratory analysis, the following techniques were used:
+    -Aggregation (groupby operations)
+    -Descriptive statistics
+    -Data visualization (bar charts, trends over time)
+    b) Build Model / Analysis
+The cleaned dataset was analyzed to:
+    -Examine accident trends over time using the year feature
+    -Analyze total injuries using the total_injuries column
+    -Group accidents by state to identify high-risk regions
+    -Explore relationships between aircraft type and injury severity
+    c) Assess Model / Results
+The analysis revealed:
+    -Clear trends in accident frequency over time
+    -Certain states showing higher accident counts
+    -Variations in injury severity depending on conditions and aircraft
+
+
+5. Evaluation - How can we evaluate the results of our analysis?
+    a] Evaluate Results = Does the analysis answer the original problem?
+>The analysis successfully identified:
+    -Trends in aviation accidents over time (e.g., increase/decrease by year)
+    -States/locations with higher accident frequency
+    -Factors associated with higher injury severity (e.g., aircraft type, conditions if included)
+>The creation of features like:
+    -year
+    -total_injuries
+    -helped improve interpretability of trends and severity.
+>Visualizations (bar charts, time trends) clearly highlighted:
+    -High-risk regions
+    -Patterns in fatal vs non-fatal incidents
+=In Conclusion:
+The results effectively address the objective of understanding accident patterns and injury severity.
+    b] Review Process = Was the approach appropriate and reliable?
+>Data cleaning steps:
+    -Missing values were handled appropriately (dropped or imputed depending on importance)
+    -Data types (especially dates and numeric fields) were corrected
+    -Duplicates were removed to avoid bias
+>Data integration:
+    -Merging with the US state codes dataset improved geographic consistency
+>Limitations identified:
+    -Missing data in some columns may reduce accuracy
+    -Some variables (e.g., weather, pilot info) may be incomplete or inconsistent
+    -Analysis is exploratory (no predictive model), so conclusions are descriptive, not causal
+!=Important insight:
+The results are reliable for trend analysis, but not for predicting accidents.
+    c] Determine Next Steps = What should be done next?
+>Improve dataset quality:
+    -Handle missing values more robustly (e.g., advanced imputation)
+    -Incorporate additional datasets (weather, airport traffic, etc.)
+>Extend analysis:
+    -Perform deeper statistical analysis (correlation, hypothesis testing)
+    -Segment accidents by aircraft category or operation type
+>Move toward modeling:
+    -Build predictive models to estimate:
+        --Probability of severe injury
+        --Accident likelihood under certain conditions
+>Visualization & reporting:
+    -Create dashboards for better decision-making
+    -Present insights to stakeholders (e.g., aviation safety bodies)
+
+>>Final Evaluation - Summary
+The results of the analysis successfully addressed the project objectives by identifying key patterns in aviation accidents,
+ including trends over time, geographic distribution, and factors influencing injury severity. The data preparation process 
+ ensured reliability through proper handling of missing values, correction of data types, and removal of duplicates.
+ Integration with the US state codes dataset improved consistency in location-based analysis.
+ However, some limitations were observed, including missing or incomplete data in certain variables, which may affect the depth of insights.
+ Additionally, the analysis is primarily exploratory and does not establish causal relationships.
+ Future work should focus on improving data quality, incorporating additional relevant datasets, 
+ and applying predictive modeling techniques to enhance decision-making. 
+ Developing interactive visualizations or dashboards could further support stakeholders in understanding and utilizing the insights.
+
+
+6. Deployment – How can results be used?
+The findings from this analysis can be presented through reports and visualizations to support aviation safety decision-making.
+ Stakeholders such as aviation authorities can use these insights to identify high-risk areas and improve safety measures.
+ Future deployment could include interactive dashboards for continuous monitoring of aviation incidents.
